@@ -1,0 +1,2 @@
+headline_strategy,oos_sharpe,oos_n_trades,oos_deflated_sharpe,n_strategy_variants,walkforward_windows,walkforward_mean_sharpe,walkforward_sharpe_min,walkforward_sharpe_max,win_rate,max_drawdown,verdict
+ETH_D3_24h,3.83,182,1.0,40,13,2.756,-7.242,14.718,0.418,-0.0019,Promising but regime-dependent; not yet deployable alpha

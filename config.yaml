@@ -1,0 +1,88 @@
+assets:
+  signal_targets:    # Have Deribit options markets
+    - BTC
+    - ETH
+  cross_asset:       # Test whether BTC/ETH IV predicts moves in broader universe
+    - SOL
+    - XRP
+    - ADA
+    - AVAX
+    - LINK
+    - DOT
+    - DOGE
+    - ATOM
+    - ARB
+    - NEAR
+    - AAVE
+    - UNI
+    - LTC
+
+binance:
+  pairs:
+    - BTCUSDT
+    - ETHUSDT
+    - SOLUSDT
+    - XRPUSDT
+    - ADAUSDT
+    - AVAXUSDT
+    - LINKUSDT
+    - DOTUSDT
+    - DOGEUSDT
+    - ATOMUSDT
+    - ARBUSDT
+    - NEARUSDT
+    - AAVEUSDT
+    - UNIUSDT
+    - LTCUSDT
+  resolution: "1h"   # 1-hour bars (aligned with Deribit DVOL)
+  start_date: "2022-01-01"
+  end_date: "2026-06-01"
+
+deribit:
+  currencies:
+    - BTC
+    - ETH
+  resolution: 3600   # seconds (1 hour)
+  start_date: "2022-01-01"
+  end_date: "2026-06-01"
+
+signals:
+  rolling_window: 30    # hours for z-score baseline
+  cooldown_bars: 24     # 24-hour cooldown between signals
+  d1:                   # DVOL z-score spike
+    z_score_threshold: 2.0
+    min_abs_change: 0.02   # 2% absolute change in log(DVOL)
+  d2:                   # DVOL absolute jump
+    min_abs_change: 0.05   # 5% absolute log change
+  d3:                   # IV risk premium spike (DVOL - realized vol)
+    z_score_threshold: 2.0
+  d4:                   # D1 + high DVOL range (intrabar panic)
+    z_score_threshold: 2.0
+    min_abs_change: 0.02
+    range_multiplier: 1.5  # z-score threshold for intrabar DVOL range (distinct subset of D1)
+
+backtest:
+  holding_periods: [1, 2, 4, 8, 24]   # hours
+  position_size: 0.01
+  commission: 0.00075
+  slippage: 0.00025
+  stop_loss_sigma: 1.5
+  train_ratio: 0.60
+  val_ratio: 0.20
+  test_ratio: 0.20
+  walk_forward:
+    train_months: 12
+    test_months: 3
+    gap_days: 7
+    n_windows: 5
+
+lead_lag:
+  max_lag_hours: 48     # Test lags -48h to +48h
+  granger_max_lags: 48
+  significance_level: 0.05
+  bonferroni_correct: true
+
+event_study:
+  pre_window: 48        # hours before IV spike
+  post_window: 72       # hours after IV spike
+  car_threshold: 0.003  # 0.3% minimum CAR to proceed

@@ -1,0 +1,14 @@
+data/*
+!data/plots/
+!data/plots/**
+!data/results/
+!data/results/**
+.env
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.DS_Store
+*.parquet
+*.zip
+.pytest_cache/
+.mypy_cache/
