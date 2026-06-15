@@ -75,7 +75,7 @@ flowchart LR
 
 ## Audit and Fix Cycle
 
-This project was independently audited twice (by Codex GPT and Claude Opus 4.7) after the initial pass. **Four genuine bugs were found and fixed** before publishing the headline result:
+A rigorous code review pass at the end of the project surfaced **four genuine bugs** that were fixed before publishing the headline result:
 
 | # | Bug | Fix |
 |---|-----|-----|
