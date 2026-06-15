@@ -1,0 +1,12 @@
+[project]
+name = "options-implied-crypto-signals"
+version = "0.1.0"
+description = "Testing whether Deribit DVOL spikes front-run short-horizon spot crypto returns"
+authors = [{ name = "Tanvir Chowdhury", email = "ratultanvir97@gmail.com" }]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --strict-markers"
